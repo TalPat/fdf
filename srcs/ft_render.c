@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_keyread.c                                       :+:      :+:    :+:   */
+/*   ft_render.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/16 13:02:28 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/16 18:47:24 by talon            ###   ########.fr       */
+/*   Created: 2018/08/16 18:52:50 by talon             #+#    #+#             */
+/*   Updated: 2018/08/16 23:35:04 by talon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fdf"
 #include "libft.h"
 #include "mlx.h"
-#include "fdf.h"
 #include <stdlib.h>
 
-int				ft_keyread(int keycode, void *param)
+void	ft_render(t_fdf *fdf)
 {
-	t_fdf	*fdf;
 
-	fdf = (t_fdf*)param;
-	if (keycode == 53)
-	{
-		mlx_destroy_window(fdf->mlx, fdf->win);
-		exit(0);
-	}
-	ft_putnbr(keycode);
-	ft_putchar('\n');
-	return (0);
 }

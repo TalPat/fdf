@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+         #
+#    By: talon <talon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/24 17:28:22 by tpatter           #+#    #+#              #
-#    Updated: 2018/08/16 13:15:22 by tpatter          ###   ########.fr        #
+#    Updated: 2018/08/16 18:44:15 by talon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC			=	main.c\
 				ft_readmap.c\
 				ft_buildvectlist.c\
 				ft_keyread.c
+SRCPATH		:=	$(addprefix $(SRCDIR), $(SRC))
 OBJDIR		=	obj/
 OBJ			=	$(SRC:%.c=%.o)
 OBJPATH		:=	$(addprefix $(OBJDIR), $(OBJ))
@@ -23,6 +24,7 @@ OBJPATH		:=	$(addprefix $(OBJDIR), $(OBJ))
 HEADER		=	includes/
 CFLAGS		=	-Wall -Werror -Wextra
 MLXFLAGS	=	-lmlx -framework OpenGL -framework AppKit -lm
+LINUXFLAGS	=	-Wl,--no-as-needed -I /usr/local/include -g  -lX11 -lXext -L. /usr/local/lib/libmlx_Linux.a -lm
 CC			=	gcc
 LIBDIR		=	libft/
 LIB			=	$(LIBDIR)libft.a
@@ -32,8 +34,11 @@ INCLUDES	=	-I $(HEADER) -I $(LIBHEAD)
 
 all: $(NAME)
 
-$(NAME): $(OBJPATH) $(LIB)
-	$(CC) -o $(NAME) $(MLXFLAGS) $(OBJPATH) $(LIBLINK) $(INCLUDES) $(CFLAGS)
+$(NAME):
+	$(CC) -o $(NAME) $(MLXFLAGS) $(SRCDIR)
+
+linux: $(LIB)
+	$(CC) -o $(NAME) -Wl,--no-as-needed -I /usr/local/include -g  -lX11 -lXext $(SRCPATH)  -L. /usr/local/lib/libmlx_Linux.a -lm $(INCLUDES) $(LIBLINK)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	mkdir -p $(OBJDIR)
