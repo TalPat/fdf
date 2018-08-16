@@ -3,17 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpatter <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/24 17:28:22 by tpatter           #+#    #+#              #
-#    Updated: 2018/08/15 15:22:20 by tpatter          ###   ########.fr        #
+#    Updated: 2018/08/16 13:15:22 by tpatter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
 SRCDIR		=	srcs/
 SRC			=	main.c\
-				ft_readmap.c
+				ft_readmap.c\
+				ft_buildvectlist.c\
+				ft_keyread.c
 OBJDIR		=	obj/
 OBJ			=	$(SRC:%.c=%.o)
 OBJPATH		:=	$(addprefix $(OBJDIR), $(OBJ))
