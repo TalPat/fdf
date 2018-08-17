@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_buildvectlist.c                                 :+:      :+:    :+:   */
+/*   ft_buildperslist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/16 10:09:47 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/17 21:18:05 by talon            ###   ########.fr       */
+/*   Created: 2018/08/17 21:04:55 by talon             #+#    #+#             */
+/*   Updated: 2018/08/17 21:29:06 by talon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
 #include <stdlib.h>
+#include "mlx.h"
 
-void	ft_buildvectlist(t_fdf *fdf)
+void	ft_buildperslist(t_fdf *fdf)
 {
-	char	**vectc;
-	int		i;
-	int		j;
-	t_vect	*myvect;
 	t_list	*tmp;
+	t_vect	*persvect;
 
-	tmp = fdf->maplist;
-	myvect = (t_vect*)malloc(sizeof(t_vect));
-	j = 0;
+	tmp = fdf->vectlist;
+	fdf->perslist = ft_lstnew(tmp->content, sizeof(t_vect));
+	tmp = tmp->next;
 	while (tmp)
 	{
-		vectc = ft_strsplit(tmp->content, ' ');
-		i = 0;
-		while (vectc[i])
-		{
-			myvect->x = i;
-			myvect->y = j;
-			myvect->z = ft_atoi(vectc[i]);
-			if (i == 0 && j == 0)
-				fdf->vectlist = ft_lstnew(myvect, sizeof(t_vect));
-			else
-				ft_lstaddend(fdf->vectlist, myvect, sizeof(t_vect));
-			i++;
-		}
+		ft_lstaddend(fdf->perslist, tmp->content, sizeof(t_vect));
 		tmp = tmp->next;
-		j++;
 	}
 }

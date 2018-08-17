@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/16 13:16:48 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/17 23:49:55 by talon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,24 @@
 
 void	ft_initfdf(t_fdf *fdf, char *dir)
 {
+	fdf->img = (t_image*)malloc(sizeof(t_image));
 	fdf->mapdir = dir;
+	fdf->mlx = mlx_init();
+	fdf->width = 1366;
+	fdf->height = 720;
+	fdf->img->width = fdf->width;
+	fdf->img->height = fdf->height;
+	fdf->cam.x = fdf->width / 2;
+	fdf->cam.y = fdf->height / 2;
+	fdf->cam.z = 5;
+	fdf->caml.x = 0;
+	fdf->caml.y = 0;
+	fdf->caml.z = 0;
+	fdf->disppos.x = fdf->width / 2;
+	fdf->disppos.y = fdf->height / 2;
+	fdf->disppos.z = 1;
+	fdf->win = mlx_new_window(fdf->mlx, fdf->width, fdf->height, "FDF");
+	fdf->img->image = mlx_new_image(fdf->mlx, fdf->width, fdf->height);
 }
 
 int		main(int ac, char **av)
@@ -33,8 +50,7 @@ int		main(int ac, char **av)
 		ft_initfdf(fdf, av[1]);
 		ft_readmap(fdf);
 		ft_buildvectlist(fdf);
-		fdf->mlx = mlx_init();
-		fdf->win = mlx_new_window(fdf->mlx, 400, 400, "FDF");
+		ft_buildperslist(fdf);		ft_render(fdf);
 		mlx_key_hook(fdf->win, ft_keyread, fdf);
 		mlx_loop(fdf->mlx);
 		while (fdf->maplist)
