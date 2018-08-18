@@ -6,7 +6,7 @@
 /*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:52:50 by talon             #+#    #+#             */
-/*   Updated: 2018/08/17 23:47:23 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/18 20:36:52 by talon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ void	ft_drawpoints(t_fdf *fdf)
 	while (tmp)
 	{
 		ft_drawtoimg(tmp->content, fdf->img);
+		if (((t_vect*)(tmp->content))->link1)
+			ft_drawlinecol(*((t_vect*)tmp->content), *((t_vect*)(tmp->content))->link1, fdf);
+		if (((t_vect*)(tmp->content))->link2)
+			ft_drawlinecol(*((t_vect*)tmp->content), *((t_vect*)(tmp->content))->link2, fdf);
 		tmp = tmp->next;
 	}
-	/**/ft_drawcirc(fdf->width / 2, fdf->height / 2, 100, fdf);
 }
 
 void	ft_render(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/17 23:49:55 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/18 20:09:37 by talon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,13 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->height = 720;
 	fdf->img->width = fdf->width;
 	fdf->img->height = fdf->height;
-	fdf->cam.x = fdf->width / 2;
-	fdf->cam.y = fdf->height / 2;
-	fdf->cam.z = 5;
+	fdf->cam.z = 50;
 	fdf->caml.x = 0;
 	fdf->caml.y = 0;
-	fdf->caml.z = 0;
+	fdf->caml.z = M_PI;
 	fdf->disppos.x = fdf->width / 2;
 	fdf->disppos.y = fdf->height / 2;
-	fdf->disppos.z = 1;
+	fdf->disppos.z = 2000;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->width, fdf->height, "FDF");
 	fdf->img->image = mlx_new_image(fdf->mlx, fdf->width, fdf->height);
 }
@@ -50,7 +48,9 @@ int		main(int ac, char **av)
 		ft_initfdf(fdf, av[1]);
 		ft_readmap(fdf);
 		ft_buildvectlist(fdf);
-		ft_buildperslist(fdf);		ft_render(fdf);
+		ft_buildperslist(fdf);
+		ft_buildlinks(fdf);
+		ft_render(fdf);
 		mlx_key_hook(fdf->win, ft_keyread, fdf);
 		mlx_loop(fdf->mlx);
 		while (fdf->maplist)

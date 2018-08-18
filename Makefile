@@ -6,7 +6,7 @@
 #    By: talon <talon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/24 17:28:22 by tpatter           #+#    #+#              #
-#    Updated: 2018/08/17 22:19:49 by talon            ###   ########.fr        #
+#    Updated: 2018/08/18 19:04:22 by talon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SRC			=	main.c\
 				ft_drawtoimg.c\
 				ft_drawcirc.c\
 				ft_buildperslist.c\
-				ft_updatepers.c
+				ft_updatepers.c\
+				ft_drawlinecol.c\
+				ft_buildlinks.c
 SRCPATH		:=	$(addprefix $(SRCDIR), $(SRC))
 OBJDIR		=	obj/
 OBJ			=	$(SRC:%.c=%.o)
