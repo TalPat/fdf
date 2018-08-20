@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_drawlinecol.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 12:00:31 by talon             #+#    #+#             */
-/*   Updated: 2018/08/19 00:20:59 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 10:25:44 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void			ft_drawlinecol(t_vect pointa, t_vect pointb, t_fdf *fdf)
 {
 	float	grad;
 	float	gradinv;
-	int		col;
 	float	dif;
 
 	if (pointa.x < 0 || pointa.x > fdf->width || pointa.y < 0 ||

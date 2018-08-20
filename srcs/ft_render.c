@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:52:50 by talon             #+#    #+#             */
-/*   Updated: 2018/08/18 20:36:52 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 15:04:46 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include <math.h>
 
 void	ft_drawpoints(t_fdf *fdf)
 {
@@ -41,4 +42,7 @@ void	ft_render(t_fdf *fdf)
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->image, 0, 0);
 	mlx_destroy_image(fdf->mlx, fdf->img->image);
 	fdf->img->image = mlx_new_image(fdf->mlx, fdf->width, fdf->height);
+	/**/mlx_string_put(fdf->mlx, fdf->win, 0, 0, 0xffffff, ft_itoa(fdf->caml.x * 1000));
+	/**/mlx_string_put(fdf->mlx, fdf->win, 0, 15, 0xffffff, ft_itoa(fdf->caml.y * 1000));
+	/**/mlx_string_put(fdf->mlx, fdf->win, 0, 30, 0xffffff, ft_itoa(fdf->caml.z * 1000));
 }

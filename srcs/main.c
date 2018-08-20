@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/18 20:09:37 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 15:26:48 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->img = (t_image*)malloc(sizeof(t_image));
 	fdf->mapdir = dir;
 	fdf->mlx = mlx_init();
-	fdf->width = 1366;
-	fdf->height = 720;
+	fdf->width = 2140;
+	fdf->height = 1080;
 	fdf->img->width = fdf->width;
 	fdf->img->height = fdf->height;
 	fdf->cam.z = 50;
@@ -31,9 +31,11 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->caml.z = M_PI;
 	fdf->disppos.x = fdf->width / 2;
 	fdf->disppos.y = fdf->height / 2;
-	fdf->disppos.z = 2000;
+	fdf->disppos.z = 1000;
 	fdf->win = mlx_new_window(fdf->mlx, fdf->width, fdf->height, "FDF");
 	fdf->img->image = mlx_new_image(fdf->mlx, fdf->width, fdf->height);
+	fdf->mousex = -20000;
+	fdf->mousey = -20000;
 }
 
 int		main(int ac, char **av)
@@ -51,24 +53,14 @@ int		main(int ac, char **av)
 		ft_buildperslist(fdf);
 		ft_buildlinks(fdf);
 		ft_render(fdf);
-		mlx_key_hook(fdf->win, ft_keyread, fdf);
+		//mlx_key_hook(fdf->win, ft_keyread, fdf);
+		mlx_hook(fdf->win, 2, 0, ft_keyread, fdf);
+		mlx_hook(fdf->win, 6, 0, ft_mouse, fdf);
 		mlx_loop(fdf->mlx);
 		while (fdf->maplist)
 		{
 			ft_putendl(fdf->maplist->content);
 			fdf->maplist = fdf->maplist->next;
-		}
-		int	i = 1;
-		while (fdf->vectlist)
-		{
-			printf("%f ", ((t_vect*)(fdf->vectlist->content))->z);
-			fdf->vectlist = fdf->vectlist->next;
-			if (i % 19 == 0)
-			{
-				printf("\n");
-				i = 0;
-			}
-			i++;
 		}
 	}
 	return (0);

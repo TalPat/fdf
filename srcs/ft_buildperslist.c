@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildperslist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 21:04:55 by talon             #+#    #+#             */
-/*   Updated: 2018/08/18 00:43:29 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 10:25:30 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void	ft_buildperslist(t_fdf *fdf)
 {
 	t_list	*tmp;
-	t_vect	*persvect;
 
 	tmp = fdf->vectlist;
 	fdf->perslist = ft_lstnew(tmp->content, sizeof(t_vect));

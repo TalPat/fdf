@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:39:07 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/18 19:33:13 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 12:46:56 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct		s_fdf
 	int				height;
 	int				mapw;
 	int				maph;
+	int				mousex;
+	int				mousey;
 }					t_fdf;
 
 void				ft_readmap(t_fdf *fdf);
@@ -65,5 +67,6 @@ void				ft_buildperslist(t_fdf *fdf);
 void				ft_updatepers(t_fdf *fdf);
 void				ft_drawlinecol(t_vect pointa, t_vect pointb, t_fdf *fdf);
 void				ft_buildlinks(t_fdf *fdf);
+int				ft_mouse(int x, int y, t_fdf *fdf);
 
 #endif

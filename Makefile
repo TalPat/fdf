@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: talon <talon@student.42.fr>                +#+  +:+       +#+         #
+#    By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/24 17:28:22 by tpatter           #+#    #+#              #
-#    Updated: 2018/08/18 19:04:22 by talon            ###   ########.fr        #
+#    Updated: 2018/08/20 11:57:42 by tpatter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC			=	main.c\
 				ft_buildperslist.c\
 				ft_updatepers.c\
 				ft_drawlinecol.c\
-				ft_buildlinks.c
+				ft_buildlinks.c\
+				ft_mouse.c
 SRCPATH		:=	$(addprefix $(SRCDIR), $(SRC))
 OBJDIR		=	obj/
 OBJ			=	$(SRC:%.c=%.o)
@@ -41,8 +42,8 @@ INCLUDES	=	-I $(HEADER) -I $(LIBHEAD)
 
 all: $(NAME)
 
-$(NAME):
-	$(CC) -o $(NAME) $(MLXFLAGS) $(SRCDIR)
+$(NAME): $(OBJPATH) $(LIB)
+	$(CC) -o $(NAME) $(MLXFLAGS) $(SRCPATH) $(LIBLINK) $(INCLUDES) $(CFLAGS) 
 
 linux: $(LIB)
 	$(CC) -o $(NAME) -Wl,--no-as-needed -I /usr/local/include -g  -lX11 -lXext $(SRCPATH)  -L. /usr/local/lib/libmlx_Linux.a -lm $(INCLUDES) $(LIBLINK)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_keyread.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:02:28 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/18 16:01:57 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/20 13:02:53 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,35 @@ int				ft_keyread(int keycode, void *param)
 		fdf->caml.y -= 0.01;
 	if (keycode == 50)
 		fdf->caml.x -= 0.01;
-	if (keycode == 65362)		//UP Z ANGLE UP
+	if (keycode == 126)		//UP Z ANGLE UP
 		fdf->caml.x += 0.01;
-	if (keycode == 65364)
+	if (keycode == 125)
 		fdf->caml.x -= 0.01;	//DOWN Z ANGLE DOWN
-	if (keycode == 65361)
+	if (keycode == 123)
 		fdf->caml.y -= 0.01;	//LEFT Y ANGLE UP
-	if (keycode == 65363)
+	if (keycode == 124)
 		fdf->caml.y += 0.01;	//RGIHT Y ANGLE UP
-	if (keycode == 113)
+	if (keycode == 12)
 		fdf->caml.z += 0.01;	//Q X ANGLE UP
-	if (keycode == 101)
+	if (keycode == 14)
 		fdf->caml.z -= 0.01;	//E X ANGLE UP
-	if (keycode == 119)
-		fdf->cam.y += 1;		//W Y TRANS
-	if (keycode == 97)
-		fdf->cam.x -= 1;		//A X TRANS
-	if (keycode == 115)
-		fdf->cam.y -= 1;		//S Y TRANS
-	if (keycode == 100)
-		fdf->cam.x += 1;		//D X TRANS
-	if (keycode == 65505)
-		fdf->cam.z += 1;		//SHIFT Z TRANS
-	if (keycode == 65507)
-		fdf->cam.z -= 1;		//LCTRL Z TRANS
-	if (keycode == 45)
+	if (keycode == 13)
+		fdf->cam.y += 0.1;		//W Y TRANS
+	if (keycode == 0)
+		fdf->cam.x -= 0.1;		//A X TRANS
+	if (keycode == 1)
+		fdf->cam.y -= 0.1;		//S Y TRANS
+	if (keycode == 2)
+		fdf->cam.x += 0.1;		//D X TRANS
+	if (keycode == 7)
+		fdf->cam.z += 0.1;		//SHIFT Z TRANS
+	if (keycode == 6)
+		fdf->cam.z -= 0.1;		//LCTRL Z TRANS
+	if (keycode == 27)
 		fdf->disppos.z += 100;	//- FOCAL LENTH
-	if (keycode == 61)
+	if (keycode == 24)
 		fdf->disppos.z -= 100;	//= FOCAL LEN
 	ft_putnbr(keycode);
-	ft_putchar('\n');
-	ft_putnbr(((t_vect*)fdf->perslist->content)->x);
-	ft_putchar('\n');
-	ft_putnbr(((t_vect*)fdf->perslist->content)->y);
-	ft_putchar('\n');
-	ft_putnbr(((t_vect*)fdf->perslist->content)->z);
 	ft_putchar('\n');
 	ft_render(fdf);
 	return (0);
