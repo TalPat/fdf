@@ -6,7 +6,7 @@
 /*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 11:47:30 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/20 15:47:50 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/20 17:13:11 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_mouse(int x, int y, t_fdf *fdf)
 	//fdf->caml.y += (float)(x - fdf->mousex) * 0.005 * sinf(fdf->caml.y);
 
 	//mouse change in x
-	//fdf->caml.x += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.y) * cosf(fdf->caml.z) + sinf(fdf->caml.y) * sinf(fdf->caml.z));
-	//fdf->caml.y += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.x) * cosf(fdf->caml.z) + sinf(fdf->caml.x) * sinf(fdf->caml.z));
-	fdf->caml.z += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.x) * cosf(fdf->caml.z) + sinf(fdf->caml.x) * sinf(fdf->caml.z));
+	//fdf->caml.x += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.z) * cosf(fdf->caml.y) - sinf(fdf->caml.z) * sinf(fdf->caml.y));
+	fdf->caml.y += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.z) * cosf(fdf->caml.x) - sinf(fdf->caml.z) * sinf(fdf->caml.x));
+	fdf->caml.z += (float)(fdf->mousex - x) * 0.005 * (cosf(fdf->caml.y) * cosf(fdf->caml.x) - sinf(fdf->caml.y) * sinf(fdf->caml.x));
 
 	fdf->mousex = x;
 	fdf->mousey = y;
