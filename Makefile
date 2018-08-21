@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+         #
+#    By: tpatter <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/07/24 17:28:22 by tpatter           #+#    #+#              #
-#    Updated: 2018/08/20 11:57:42 by tpatter          ###   ########.fr        #
+#    Updated: 2018/08/21 10:38:47 by tpatter          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,10 @@ SRC			=	main.c\
 				ft_updatepers.c\
 				ft_drawlinecol.c\
 				ft_buildlinks.c\
-				ft_mouse.c
+				ft_mouse.c\
+				ft_renderhook.c\
+				ft_zscale.c\
+				ft_rotate.c
 SRCPATH		:=	$(addprefix $(SRCDIR), $(SRC))
 OBJDIR		=	obj/
 OBJ			=	$(SRC:%.c=%.o)

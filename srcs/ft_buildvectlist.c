@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildvectlist.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 10:09:47 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/17 21:18:05 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/21 09:28:06 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_buildvectlist(t_fdf *fdf)
 	int		j;
 	t_vect	*myvect;
 	t_list	*tmp;
+	t_list	*tmpend;
 
 	tmp = fdf->maplist;
 	myvect = (t_vect*)malloc(sizeof(t_vect));
@@ -35,9 +36,16 @@ void	ft_buildvectlist(t_fdf *fdf)
 			myvect->y = j;
 			myvect->z = ft_atoi(vectc[i]);
 			if (i == 0 && j == 0)
+			{
 				fdf->vectlist = ft_lstnew(myvect, sizeof(t_vect));
+				tmpend = fdf->vectlist;
+			}
 			else
-				ft_lstaddend(fdf->vectlist, myvect, sizeof(t_vect));
+			{
+				while (tmpend->next)
+					tmpend = tmpend->next;
+				ft_lstaddend(tmpend, myvect, sizeof(t_vect));
+			}
 			i++;
 		}
 		tmp = tmp->next;

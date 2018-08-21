@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/20 15:26:48 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/21 11:08:48 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->img->image = mlx_new_image(fdf->mlx, fdf->width, fdf->height);
 	fdf->mousex = -20000;
 	fdf->mousey = -20000;
+	fdf->rotate = 0;
 }
 
 int		main(int ac, char **av)
@@ -47,15 +48,23 @@ int		main(int ac, char **av)
 	else
 	{
 		fdf = (t_fdf*)malloc(sizeof(t_fdf));
+		/**/ft_putendl("initialising");
 		ft_initfdf(fdf, av[1]);
+		/**/ft_putendl("reading map");
 		ft_readmap(fdf);
+		/**/ft_putendl("building ve list");
 		ft_buildvectlist(fdf);
+		/**/ft_putendl("building pers list");
 		ft_buildperslist(fdf);
+		/**/ft_putendl("building links");
 		ft_buildlinks(fdf);
-		ft_render(fdf);
+		/**/ft_putendl("creating hooks");
 		//mlx_key_hook(fdf->win, ft_keyread, fdf);
 		mlx_hook(fdf->win, 2, 0, ft_keyread, fdf);
 		mlx_hook(fdf->win, 6, 0, ft_mouse, fdf);
+		//mlx_loop_hook(fdf->mlx, ft_rotate, fdf);
+		mlx_loop_hook(fdf->mlx, ft_renderhook, fdf);
+		//ft_render(fdf);
 		mlx_loop(fdf->mlx);
 		while (fdf->maplist)
 		{

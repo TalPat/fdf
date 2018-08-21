@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_buildlinks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 19:02:40 by talon             #+#    #+#             */
-/*   Updated: 2018/08/18 20:40:21 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/21 09:18:06 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ void	ft_buildlinks(t_fdf *fdf)
 	j = 0;
 	while (tmp)
 	{
-		/**/ft_putendl("Q");
 		if (j < fdf->maph)
 		{
-		/**/ft_putendl("R");
 			linktmp = tmp;
 			k = fdf->mapw;
 			while (linktmp && k >= 0)
@@ -38,7 +36,6 @@ void	ft_buildlinks(t_fdf *fdf)
 				linktmp = linktmp->next;
 				k--;
 			}
-		/**/ft_putendl("s");
 			((t_vect*)(tmp->content))->link2 = linktmp->content;
 		}
 		else
@@ -51,8 +48,6 @@ void	ft_buildlinks(t_fdf *fdf)
 			i = -1;
 			((t_vect*)(tmp->content))->link1 = NULL;
 		}
-		/**/ft_putnbr(i);
-		/**/ft_putendl("Q");
 		i++;
 		tmp = tmp->next;
 	}

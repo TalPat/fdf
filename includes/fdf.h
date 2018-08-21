@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tpatter <tpatter@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:39:07 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/20 12:46:56 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/21 12:22:21 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct		s_fdf
 	int				maph;
 	int				mousex;
 	int				mousey;
+	int				rotate;
 }					t_fdf;
 
 void				ft_readmap(t_fdf *fdf);
@@ -61,12 +62,17 @@ void				ft_buildvectlist(t_fdf *fdf);
 int					ft_keyread(int keycode, void *param);
 void				ft_render(t_fdf *fdf);
 void				ft_drawtoimg(t_vect *point, t_image *img);
-void				ft_drawtoimgcol(t_vect *point, t_image *img, unsigned int col);
+void				ft_drawtoimgcol(t_vect *point, t_image *img,
+					unsigned int col);
 void				ft_drawcirc(float cx, float cy, float r, t_fdf *fdf);
 void				ft_buildperslist(t_fdf *fdf);
 void				ft_updatepers(t_fdf *fdf);
 void				ft_drawlinecol(t_vect pointa, t_vect pointb, t_fdf *fdf);
 void				ft_buildlinks(t_fdf *fdf);
-int				ft_mouse(int x, int y, t_fdf *fdf);
+int					ft_mouse(int x, int y, t_fdf *fdf);
+int					ft_renderhook(void *param);
+void				ft_drawpoints(t_fdf *fdf);
+void				ft_zscale(float scale, t_fdf *fdf);
+int					ft_rotate(void *param);
 
 #endif
