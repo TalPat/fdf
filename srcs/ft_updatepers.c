@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 22:21:05 by talon             #+#    #+#             */
-/*   Updated: 2018/08/21 18:24:32 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/24 14:21:23 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,27 @@ int		ft_infront(t_vect *vect, t_fdf *fdf)
 	t_vect	delta;
 	t_vect	deg;
 	float	dist;
+	float	hdev;
+	float	vdev;
 
 	delta.x = (fdf->cam.x) - vect->x;
 	delta.y = (fdf->cam.y) - vect->y;
 	delta.z = (fdf->cam.z) - vect->z;
 	dist = sqrtf(delta.x * delta.x + delta.y * delta.y + delta.z * delta.z);
-	deg.x = acosf(sqrtf(delta.x * delta.x + delta.y * delta.y) / dist); 	// elevation(always positive, relative to xy plane)
-	deg.z = atanf(delta.y / delta.x);										// bearing relative to xz
-	/**/if (vect->x == 0 && vect->y == 0)
-	{
-		ft_putnbr((deg.x) * 1000.f);
-		ft_putchar('\t');
-		ft_putnbr((deg.z) * 1000.f);
-		ft_putchar('\n');
-	}
-	if (fdf->caml.x - deg.x > M_PI || fdf->caml.x - deg.x < 0)
-		return (1);
+	deg.x = acosf(delta.z / dist);
+	deg.z = acosf(delta.x / sqrtf(delta.x * delta.x + delta.y * delta.y));
+	if (fdf->cam.y < vect->y)
+		deg.z = 2 * M_PI - deg.z;
+	hdev = fdf->caml.z - M_PI / 2 - deg.z;
+	vdev = fdf->caml.x - deg.x;
+	if (hdev < -1 * M_PI)
+		hdev += 2 * M_PI;
+	if (hdev > M_PI / 2 || hdev < -1 * M_PI / 2)
+		return (0);
+	hdev = atanf(sqrtf(fdf->width) * sqrtf(fdf->width) + sqrtf(fdf->height)
+				* sqrtf(fdf->height) / 2 / fdf->disppos.z);
+	if ((vdev > hdev || vdev < (-1 * hdev)))
+		return (0);
 	return (1);
 }
 

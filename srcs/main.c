@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/21 11:08:48 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/24 16:47:59 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 void	ft_initfdf(t_fdf *fdf, char *dir)
 {
+	ft_putendl("initialising");
 	fdf->img = (t_image*)malloc(sizeof(t_image));
 	fdf->mapdir = dir;
 	fdf->mlx = mlx_init();
@@ -26,7 +27,7 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->img->width = fdf->width;
 	fdf->img->height = fdf->height;
 	fdf->cam.z = 50;
-	fdf->caml.x = 0;
+	fdf->caml.x = 0.5;
 	fdf->caml.y = 0;
 	fdf->caml.z = M_PI;
 	fdf->disppos.x = fdf->width / 2;
@@ -48,23 +49,16 @@ int		main(int ac, char **av)
 	else
 	{
 		fdf = (t_fdf*)malloc(sizeof(t_fdf));
-		/**/ft_putendl("initialising");
 		ft_initfdf(fdf, av[1]);
-		/**/ft_putendl("reading map");
+		ft_putendl("reading map");
 		ft_readmap(fdf);
-		/**/ft_putendl("building ve list");
+		ft_putendl("building vector list");
 		ft_buildvectlist(fdf);
-		/**/ft_putendl("building pers list");
 		ft_buildperslist(fdf);
-		/**/ft_putendl("building links");
 		ft_buildlinks(fdf);
-		/**/ft_putendl("creating hooks");
-		//mlx_key_hook(fdf->win, ft_keyread, fdf);
 		mlx_hook(fdf->win, 2, 0, ft_keyread, fdf);
 		mlx_hook(fdf->win, 6, 0, ft_mouse, fdf);
-		//mlx_loop_hook(fdf->mlx, ft_rotate, fdf);
 		mlx_loop_hook(fdf->mlx, ft_renderhook, fdf);
-		//ft_render(fdf);
 		mlx_loop(fdf->mlx);
 		while (fdf->maplist)
 		{

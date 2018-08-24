@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 19:02:40 by talon             #+#    #+#             */
-/*   Updated: 2018/08/21 09:18:06 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/24 13:22:29 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,26 @@
 #include "libft.h"
 #include <stdlib.h>
 
+void	ft_travlist(t_list **lst, int amount)
+{
+	while (*lst && amount >= 0)
+	{
+		*lst = (*lst)->next;
+		amount--;
+	}
+}
+
+void	ft_normsucks(int *i, int *j, t_list *tmp)
+{
+	(*j)++;
+	*i = -1;
+	((t_vect*)(tmp->content))->link1 = NULL;
+}
+
 void	ft_buildlinks(t_fdf *fdf)
 {
 	int		i;
 	int		j;
-	int		k;
 	t_list	*tmp;
 	t_list	*linktmp;
 
@@ -30,12 +45,7 @@ void	ft_buildlinks(t_fdf *fdf)
 		if (j < fdf->maph)
 		{
 			linktmp = tmp;
-			k = fdf->mapw;
-			while (linktmp && k >= 0)
-			{
-				linktmp = linktmp->next;
-				k--;
-			}
+			ft_travlist(&linktmp, fdf->mapw);
 			((t_vect*)(tmp->content))->link2 = linktmp->content;
 		}
 		else
@@ -43,11 +53,7 @@ void	ft_buildlinks(t_fdf *fdf)
 		if (i < fdf->mapw)
 			((t_vect*)(tmp->content))->link1 = tmp->next->content;
 		else
-		{
-			j++;
-			i = -1;
-			((t_vect*)(tmp->content))->link1 = NULL;
-		}
+			ft_normsucks(&i, &j, tmp);
 		i++;
 		tmp = tmp->next;
 	}

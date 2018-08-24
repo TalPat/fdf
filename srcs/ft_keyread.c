@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:02:28 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/21 12:36:48 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/24 14:23:21 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 void			ft_keycom3(int keycode, t_fdf *fdf)
 {
 	if (keycode == 7)
-		fdf->cam.z += 0.5;		//SHIFT Z TRANS
+		fdf->cam.z += 0.5;
 	if (keycode == 6)
-		fdf->cam.z -= 0.5;		//LCTRL Z TRANS
+		fdf->cam.z -= 0.5;
 	if (keycode == 27)
-		fdf->disppos.z += 100;	//- FOCAL LENTH
+		fdf->disppos.z += 100;
 	if (keycode == 24)
-		fdf->disppos.z -= 100;	//= FOCAL LEN
+		fdf->disppos.z -= 100;
 	if (keycode == 78)
 		ft_zscale(0.8, fdf);
 	if (keycode == 69)
@@ -41,29 +41,28 @@ void			ft_keycom3(int keycode, t_fdf *fdf)
 
 void			ft_keycom2(int keycode, t_fdf *fdf)
 {
-
 	if (keycode == 13)
 	{
-		fdf->cam.x -= 0.5 * sinf(fdf->caml.z) * sinf(fdf->caml.x);	//W Y TRANS
+		fdf->cam.x -= 0.5 * sinf(fdf->caml.z) * sinf(fdf->caml.x);
 		fdf->cam.y += 0.5 * cosf(fdf->caml.z) * sinf(fdf->caml.x);
 		fdf->cam.z -= 0.5 * cosf(fdf->caml.x);
 	}
 	if (keycode == 0)
 	{
-		fdf->cam.x += 0.5 * cosf(fdf->caml.z);		//A X TRANS
+		fdf->cam.x += 0.5 * cosf(fdf->caml.z);
 		fdf->cam.y += 0.5 * sinf(fdf->caml.z);
 	}
 	if (keycode == 1)
 	{
-		fdf->cam.x += 0.5 * sinf(fdf->caml.z) * sinf(fdf->caml.x);	//W Y TRANS
+		fdf->cam.x += 0.5 * sinf(fdf->caml.z) * sinf(fdf->caml.x);
 		fdf->cam.y -= 0.5 * cosf(fdf->caml.z) * sinf(fdf->caml.x);
 		fdf->cam.z += 0.5 * cosf(fdf->caml.x);
-	}		//S Y TRANS
+	}
 	if (keycode == 2)
 	{
-		fdf->cam.x -= 0.5 * cosf(fdf->caml.z);		//D X TRANS
+		fdf->cam.x -= 0.5 * cosf(fdf->caml.z);
 		fdf->cam.y -= 0.5 * sinf(fdf->caml.z);
-	}		//D X TRANS
+	}
 	ft_keycom3(keycode, fdf);
 }
 
@@ -74,24 +73,24 @@ void			ft_keycom1(int keycode, t_fdf *fdf)
 		mlx_destroy_window(fdf->mlx, fdf->win);
 		exit(0);
 	}
-	if (keycode == 52)			//5 EXIT
+	if (keycode == 52)
 		fdf->caml.z -= 0.01;
-	if (keycode == 51)		
+	if (keycode == 51)
 		fdf->caml.y -= 0.01;
 	if (keycode == 50)
 		fdf->caml.x -= 0.01;
-	if (keycode == 126)		//UP Z ANGLE UP
+	if (keycode == 126)
 		fdf->caml.x += 0.01;
 	if (keycode == 125)
-		fdf->caml.x -= 0.01;	//DOWN Z ANGLE DOWN
+		fdf->caml.x -= 0.01;
 	if (keycode == 123)
-		fdf->caml.y -= 0.01;	//LEFT Y ANGLE UP
+		fdf->caml.y -= 0.01;
 	if (keycode == 124)
-		fdf->caml.y += 0.01;	//RGIHT Y ANGLE UP
+		fdf->caml.y += 0.01;
 	if (keycode == 12)
-		fdf->caml.z += 0.01;	//Q X ANGLE UP
+		fdf->caml.z += 0.01;
 	if (keycode == 14)
-		fdf->caml.z -= 0.01;	//E X ANGLE UP
+		fdf->caml.z -= 0.01;
 	ft_keycom2(keycode, fdf);
 }
 
@@ -101,7 +100,5 @@ int				ft_keyread(int keycode, void *param)
 
 	fdf = (t_fdf*)param;
 	ft_keycom1(keycode, fdf);
-	ft_putnbr(keycode);
-	ft_putchar('\n');
 	return (0);
 }
