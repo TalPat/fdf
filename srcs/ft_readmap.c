@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_readmap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: talon <talon@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:07:34 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/17 21:00:57 by talon            ###   ########.fr       */
+/*   Updated: 2018/08/24 17:49:07 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
 #include <fcntl.h>
+#include <stdlib.h>
 
 void	ft_readmap(t_fdf *fdf)
 {
@@ -23,8 +24,10 @@ void	ft_readmap(t_fdf *fdf)
 		fdf->maplist = ft_lstnew(fdf->line, ft_strlen(fdf->line) + 1);
 	else
 		fdf->maplist = NULL;
+	free(fdf->line);
 	while (ft_grabline(fd, &(fdf->line)) == 1)
 	{
 		ft_lstaddend(fdf->maplist, fdf->line, ft_strlen(fdf->line) + 1);
+		free(fdf->line);
 	}
 }

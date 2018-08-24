@@ -6,13 +6,26 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 10:09:47 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/24 16:45:32 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/24 18:24:59 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
 #include <stdlib.h>
+
+void	ft_cleanstuff(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 void	ft_addtovlist(t_vect *myvect, int j, t_list **tmp, t_fdf *fdf)
 {
@@ -40,7 +53,7 @@ void	ft_addtovlist(t_vect *myvect, int j, t_list **tmp, t_fdf *fdf)
 		}
 		i++;
 	}
-	(*tmp) = (*tmp)->next;
+	ft_cleanstuff(vectc);
 }
 
 void	ft_buildvectlist(t_fdf *fdf)
@@ -56,5 +69,6 @@ void	ft_buildvectlist(t_fdf *fdf)
 	{
 		ft_addtovlist(myvect, j, &tmp, fdf);
 		j++;
+		tmp = tmp->next;
 	}
 }
