@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/24 18:30:41 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/26 12:04:33 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->img = (t_image*)malloc(sizeof(t_image));
 	fdf->mapdir = dir;
 	fdf->mlx = mlx_init();
-	fdf->width = 2140;
-	fdf->height = 1080;
+	fdf->width = 1366;
+	fdf->height = 720;
 	fdf->img->width = fdf->width;
 	fdf->img->height = fdf->height;
 	fdf->cam.z = 50;
