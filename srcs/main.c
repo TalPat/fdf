@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/26 12:04:33 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/26 15:28:13 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,6 @@ int		main(int ac, char **av)
 		mlx_hook(fdf->win, 6, 0, ft_mouse, fdf);
 		mlx_loop_hook(fdf->mlx, ft_renderhook, fdf);
 		mlx_loop(fdf->mlx);
-		while (fdf->maplist)
-		{
-			ft_putendl(fdf->maplist->content);
-			fdf->maplist = fdf->maplist->next;
-		}
 	}
 	return (0);
 }
