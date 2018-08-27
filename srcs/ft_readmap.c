@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:07:34 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/26 15:14:27 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/27 09:31:00 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ void	ft_readmap(t_fdf *fdf)
 		ft_lstaddend(fdf->maplist, fdf->line, ft_strlen(fdf->line) + 1);
 		free(fdf->line);
 	}
+	if (!fdf->maplist)
+		fdf->error = 2;
 }

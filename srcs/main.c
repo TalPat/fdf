@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/13 18:28:33 by talon             #+#    #+#             */
-/*   Updated: 2018/08/26 15:28:13 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/27 10:17:51 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ void	ft_initfdf(t_fdf *fdf, char *dir)
 	fdf->mousex = -20000;
 	fdf->mousey = -20000;
 	fdf->rotate = 0;
+	fdf->error = 0;
+	fdf->rowlen = 0;
+	if (ft_strcmp(".fdf", dir + ft_strlen(dir) - 4))
+		fdf->error = 1;
+}
+
+void	ft_errorquit(t_fdf *fdf)
+{
+	if (fdf->error == 1)
+		ft_putendl("Submitted map must be *.fdf format");
+	else
+		ft_putendl("Map content is invalid");
+	exit(0);
 }
 
 int		main(int ac, char **av)
@@ -52,8 +65,13 @@ int		main(int ac, char **av)
 		ft_initfdf(fdf, av[1]);
 		ft_putendl("reading map");
 		ft_readmap(fdf);
+		if (fdf->error)
+			ft_errorquit(fdf);
 		ft_putendl("building vector list");
 		ft_buildvectlist(fdf);
+		if (fdf->error)
+			ft_errorquit(fdf);
+		ft_putendl("building perspective list");
 		ft_buildperslist(fdf);
 		ft_buildlinks(fdf);
 		mlx_hook(fdf->win, 2, 0, ft_keyread, fdf);

@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 14:39:07 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/21 12:22:21 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/27 09:31:17 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct		s_fdf
 	int				mousex;
 	int				mousey;
 	int				rotate;
+	int				error;
+	int				rowlen;
 }					t_fdf;
 
 void				ft_readmap(t_fdf *fdf);

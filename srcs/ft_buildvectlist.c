@@ -6,7 +6,7 @@
 /*   By: tpatter <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 10:09:47 by tpatter           #+#    #+#             */
-/*   Updated: 2018/08/24 18:24:59 by tpatter          ###   ########.fr       */
+/*   Updated: 2018/08/27 10:15:48 by tpatter          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,33 @@ void	ft_addtovlist(t_vect *myvect, int j, t_list **tmp, t_fdf *fdf)
 	ft_cleanstuff(vectc);
 }
 
+void	ft_errorcheck(t_fdf *fdf)
+{
+	t_list	*tmp;
+	int		width;
+	int		i;
+
+	width = -1;
+	tmp = fdf->vectlist;
+	while (((t_vect*)(tmp->content))->x < ((t_vect*)(tmp->next->content))->x)
+		tmp = tmp->next;
+	width = ((t_vect*)(tmp->content))->x;
+	while (tmp->next)
+	{
+		i = 0;
+		while (i <= width && tmp)
+		{
+			i++;
+			tmp = tmp->next;
+		}
+		if (width != ((t_vect*)(tmp->content))->x)
+		{
+			fdf->error = 2;
+			break ;
+		}
+	}
+}
+
 void	ft_buildvectlist(t_fdf *fdf)
 {
 	int		j;
@@ -71,4 +98,5 @@ void	ft_buildvectlist(t_fdf *fdf)
 		j++;
 		tmp = tmp->next;
 	}
+	ft_errorcheck(fdf);
 }
